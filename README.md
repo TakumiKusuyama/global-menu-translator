@@ -56,7 +56,38 @@ brew install tesseract-lang
 
 ### 5. OpenAI APIキー設定
 
-- 環境変数にAPIキーを設定してください:
+#### 1. 環境変数にAPIキーを設定
+- ルートディレクトリに.envを作成し、下記を記述
 ```bash
-export OPENAI_API_KEY="your_api_key_here"
+OPENAI_API_KEY="my_api_key"
 ```
+#### 2. APIが設定できたかの確認
+- ルートにtest_env.pyを作成し、仮想環境下で実行
+```bash
+(venv) (3.10.4) tk@tknoMacBook-Pro global-menu-translator % python test_env.py
+```
+- 仮想環境下であるかの確認
+    - (venv)が入っているか
+    - 下記で/venv/bin/pythonになっているか
+    ```bash
+    which python
+    ```
+- 仮想環境ではない場合、下記を叩く
+```bash
+source venv/bin/activate
+```
+- dotenvが存在しないエラーが発生した場合
+    - 仮想環境下で下記を叩き、インストール
+    ```bash
+    pip install python-dotenv
+    ```
+    - global-menu-translator/requirements.txtに下記を追加
+    ```txt
+    python-dotenv
+    ```
+- ルートで下記実行
+```bash
+python test_env.py
+```
+
+### 6. 
