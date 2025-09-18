@@ -1,4 +1,8 @@
-pytesseract
-Pillow
-openai
+fastapi
+uvicorn
 python-dotenv
+openai
+pillow
+pytest
+pytesseract
+python-multipart
