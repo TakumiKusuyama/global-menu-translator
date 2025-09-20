@@ -30,6 +30,65 @@ global-menu-translator/
 ## セットアップ手順
 
 
+### 🐞 サーバーのデバッグ実行方法
+
+#### 1. VSCodeのブレークポイント機能を使う場合（推奨）
+
+1. VSCodeでプロジェクトルートを開きます。
+2. デバッグしたいPythonファイルの任意の行番号左側をクリックし、赤い●（ブレークポイント）を設定します。
+3. `.vscode/launch.json` に下記のような設定があることを確認します（なければ作成）。
+	 ```json
+	 {
+		 "version": "0.2.0",
+		 "configurations": [
+			 {
+				 "name": "FastAPI: uvicorn",
+				 "type": "debugpy",
+				 "request": "launch",
+				 "module": "uvicorn",
+				 "args": ["app.main:app", "--reload"],
+				 "justMyCode": false
+			 }
+		 ]
+	 }
+	 ```
+4. 左側の「実行とデバッグ」パネルを開き、「FastAPI: uvicorn」を選択して「▶」ボタンを押す、またはF5キーを押します。
+	 - コマンドパレット（Cmd+Shift+P）で「デバッグ: 構成の選択」→「FastAPI: uvicorn」でもOKです。
+5. サーバーが起動したら、APIリクエスト（例: Swagger UIやcurl）を送信します。
+6. ブレークポイントで自動的に処理が停止し、VSCodeのデバッガ画面で変数の中身やステップ実行（F10:次の行へ、F11:関数の中へ、Shift+F5:停止など）が可能です。
+
+【コマンド例】
+- サーバー起動: 「実行とデバッグ」パネルで「FastAPI: uvicorn」を選択し「▶」またはF5
+- APIテスト: ブラウザで http://localhost:8000/docs へアクセス、またはcurlコマンド等
+
+【ショートカットキー】
+- 続行（Continue）：F5
+- ステップオーバー（Step Over）：F10
+- ステップイン（Step Into）：F11
+- ステップアウト（Step Out）：Shift+F11
+- 次のブレークポイントまで実行：F5
+- デバッグの停止：Shift+F5
+- 再起動：Ctrl+Shift+F5
+- カーソル位置まで実行：Ctrl+F10
+- すべてのブレークポイント有効/無効：Cmd+F9
+- ブレークポイントの切り替え：F9
+
+【ヒント】
+- launch.jsonの設定は `.vscode/launch.json` に保存します。
+- デバッグ中は「変数」「コールスタック」「ウォッチ」などのパネルで詳細な情報が確認できます。
+
+#### 2. Python標準のbreakpoint()を使う場合
+
+1. デバッグしたい箇所に `breakpoint()` を記述します。
+2. サーバーを `--reload` オプション付きで起動します。
+	```sh
+	uvicorn app.main:app --reload
+	```
+3. APIリクエストを送ると、該当箇所でインタラクティブなデバッガ（pdb）が起動します。
+	- ターミナル上で `n`（次の行へ）、`s`（関数の中へ）、`c`（続行）、`p 変数名`（値表示）などのコマンドが利用できます。
+
+---
+
 ### 1. 仮想環境の作成とパッケージインストール
 
 1. 仮想環境(venv)の作成

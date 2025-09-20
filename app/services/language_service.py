@@ -43,8 +43,8 @@ class LanguageService:
         Returns:
             str: 言語名（例: 'Japanese', 'English', 'Chinese', 'Korean' など）
         """
-        
-        
+
+        # プロンプト
         """
         次のテキストの言語を判定し、言語名のみを出力してください。
         Text: {text}

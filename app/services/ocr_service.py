@@ -38,7 +38,7 @@ class OCRService:
             image = Image.open(image_path)
             # 画像からテキストを抽出
             extracted_image_text = pytesseract.image_to_string(image, lang=self.tesseract_langs)
-            # 抽出したテキストを前処理して返す
+            # 抽出したテキストを返す
             return extracted_image_text
         except Exception as e:
             raise RuntimeError(f"OCR処理に失敗しました: {e}")

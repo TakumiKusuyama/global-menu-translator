@@ -22,3 +22,4 @@ DEFAULT_TARGET_LANG = "en"
 # AI翻訳モデル
 MODEL_NAME_3_5_TURBO = "gpt-3.5-turbo"
 MODEL_NAME_4_0_O = "gpt-4o"
+
